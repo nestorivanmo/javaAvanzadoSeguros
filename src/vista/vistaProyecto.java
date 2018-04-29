@@ -1,12 +1,16 @@
 package vista;
 import controlador.Conectar;
+import controlador.CargarBD;
 import java.sql.Connection;
 
 public class vistaProyecto extends javax.swing.JFrame {
     
     Conectar con;
+    CargarBD carga = new CargarBD();
+    
     public vistaProyecto() {
         initComponents();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -144,7 +148,10 @@ public class vistaProyecto extends javax.swing.JFrame {
         Connection reg = con.getConnection();
         if(reg != null){        
             txtEstado.setText("Conectado");
-            cargarButton.setEnabled(true);
+            
+                cargarButton.setEnabled(true);
+              
+            
         }else{
             txtEstado.setText("Error: intenta en unos minutos");
         }
@@ -161,7 +168,13 @@ public class vistaProyecto extends javax.swing.JFrame {
     
     //BOTON PARA CARGAR DATOS A LA BD
     private void cargarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarButtonActionPerformed
-        
+        if(carga.getEstadoCarga() == true){
+                System.out.println("Los archivos XML ya están en la BD");
+            }else{
+                carga.cargar();
+                carga.setEstadoCargo(true);
+                cargarButton.setEnabled(false);
+            }
     }//GEN-LAST:event_cargarButtonActionPerformed
 
     public static void main(String args[]) {
