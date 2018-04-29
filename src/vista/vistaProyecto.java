@@ -171,7 +171,7 @@ public class vistaProyecto extends javax.swing.JFrame {
         if(carga.getEstadoCarga() == true){
                 System.out.println("Los archivos XML ya están en la BD");
             }else{
-                carga.cargar();
+                carga.cargar(con.getConnection());
                 carga.setEstadoCargo(true);
                 cargarButton.setEnabled(false);
             }
