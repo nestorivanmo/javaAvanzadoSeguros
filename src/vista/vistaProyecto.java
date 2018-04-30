@@ -946,6 +946,9 @@ public class vistaProyecto extends javax.swing.JFrame {
             System.out.println("modelo: " + tf5.getText());
             System.out.println("marca: " + tf6.getText());
         }else if(facturaTButton.isSelected()){
+            System.out.println("id_fac:" + (selectedRow+1));
+            
+            System.out.println("monto: " + tf4.getText());
             
         }else{
             System.out.println("Presiona un botón para actualizar");
