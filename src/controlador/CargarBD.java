@@ -49,14 +49,14 @@ public class CargarBD {
     }
     
     public void cargarClientes(Connection conn, int i){
-      /* try{
+       try{
             pps_Clientes = conn.prepareStatement("INSERT INTO CLIENTE (id_cliente, nombre, direccion ) VALUES (?,?,?)");
             pps_Clientes.setInt(1, i);
             pps_Clientes.setString(2, ex.getCliente((i - 1), "nombre"));
             pps_Clientes.setString(3, ex.getCliente((i - 1), "direccion"));
             pps_Clientes.executeUpdate();
             
-        }catch(Exception e){System.out.println("Error al cargar clientes : " + e.getMessage());};*/            
+        }catch(Exception e){System.out.println("Error al cargar clientes : " + e.getMessage());};            
        
     }
     

@@ -91,6 +91,41 @@ public class Consultar {
         }
        
     }
+     
+     public void mostrarTodoPoliza(JTable tabladatos, Connection conn){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_poliza");
+        modelo.addColumn("id_cliente_fk");
+        modelo.addColumn("id_vehiculo_fk");
+        modelo.addColumn("costoPoliza");
+        modelo.addColumn("valorPrima");
+        modelo.addColumn("fecha apertura");
+        modelo.addColumn("fecha vencimiento");
+        
+        tabladatos.setModel(modelo);
+        
+        String query = "SELECT * FROM POLIZA";
+        String datos[] = new String [7];
+        Statement st;
+        try {
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
+                modelo.addRow(datos);
+            }
+            tabladatos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
     
     
     
@@ -206,6 +241,36 @@ public class Consultar {
                 datos[1] = rs.getString(2);  
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4); 
+                modelo.addRow(datos);
+            }
+            tabladatos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mostrarTodoVehiculo(JTable tabladatos, Connection conn){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_vehiculo");
+        modelo.addColumn("id_factura_fk");
+        modelo.addColumn("placa");
+        modelo.addColumn("modelo");
+        modelo.addColumn("marca");       
+        
+        tabladatos.setModel(modelo);
+        
+        String query = "SELECT * FROM VEHICULO";
+        String datos[] = new String [5];
+        Statement st;
+        try {
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);  
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4); 
+                datos[4] = rs.getString(5);
                 modelo.addRow(datos);
             }
             tabladatos.setModel(modelo);
