@@ -30,3 +30,22 @@ CREATE TABLE POLIZA (
 	FOREIGN KEY (id_cliente_fk) REFERENCES CLIENTE(id_cliente),
 	FOREIGN KEY (id_vehiculo_fk) REFERENCES VEHICULO(id_vehiculo)
 );
+
+
+SELECT 
+	id_cliente, 
+	nombre,
+	costoPoliza,
+	placa,
+	modelo, 
+	monto
+FROM 
+	CLIENTE c1
+		INNER JOIN 
+	POLIZA p1 ON c1.id_cliente = p1.id_cliente_fk
+		INNER JOIN
+	VEHICULO v1 ON p1.id_vehiculo_fk = v1.id_vehiculo
+		INNER JOIN
+	FACTURA f1 ON v1.id_factura_fk = f1.id_factura;
+
+

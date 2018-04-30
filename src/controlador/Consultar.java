@@ -98,17 +98,29 @@ public class Consultar {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("id_cliente");
         modelo.addColumn("nombre");
+        modelo.addColumn("costo poliza");
         modelo.addColumn("placa");
         modelo.addColumn("modelo");
         modelo.addColumn("monto");       
         
         tabladatos.setModel(modelo);
         
-        String query = "SELECT CLIENTE.id_cliente, CLIENTE.nombre, VEHICULO.placa, VEHICULO.modelo, FACTURA.monto"
-                + " FROM CLIENTE INNER JOIN POLIZA ON CLIENTE.id_cliente = POLIZA.id_cliente_fk"
-                + "INNER JOIN VEHICULO on POLIZA.id_vehiculo_fk = VEHICULO.id_vehiculo"
-                + "INNER JOIN FACTURA ON FACTURA.id_factura = VEHICULO.id_vehiculo";
-        String datos[] = new String [5];
+        String query = "SELECT \n" +
+"	id_cliente, \n" +
+"	nombre,\n" +
+"	costoPoliza,\n" +
+"	placa,\n" +
+"	modelo, \n" +
+"	monto\n" +
+"FROM \n" +
+"	CLIENTE c1\n" +
+"		INNER JOIN \n" +
+"	POLIZA p1 ON c1.id_cliente = p1.id_cliente_fk\n" +
+"		INNER JOIN\n" +
+"	VEHICULO v1 ON p1.id_vehiculo_fk = v1.id_vehiculo\n" +
+"		INNER JOIN\n" +
+"	FACTURA f1 ON v1.id_factura_fk = f1.id_factura;"; 
+        String datos[] = new String [6];
         Statement st;
         try {
             st = conn.createStatement();
@@ -119,6 +131,7 @@ public class Consultar {
                 datos[2] = rs.getString(3);
                 datos[3] = rs.getString(4); 
                 datos[4] = rs.getString(5); 
+                datos[5] = rs.getString(6);
                 modelo.addRow(datos);
             }
             tabladatos.setModel(modelo);
