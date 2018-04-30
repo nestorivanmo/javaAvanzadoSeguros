@@ -69,12 +69,13 @@ public class vistaProyecto extends javax.swing.JFrame {
                    tf5.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
                }
                if(vehiculoTButton.isSelected()){                                      
-                   tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
-                   tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
-                   tf5.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
-                   tf6.setText(tablaActualizar.getModel().getValueAt(selectedRow, 3).toString());
+                   tf2.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
+                   tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
+                   tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
+                   tf5.setText(tablaActualizar.getModel().getValueAt(selectedRow, 3).toString());
+                   tf6.setText(tablaActualizar.getModel().getValueAt(selectedRow, 4).toString());
                }
-               if(polizaTButton.isSelected()){
+               /*if(polizaTButton.isSelected()){
                    tf1.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
                    tf2.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
                    tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
@@ -82,7 +83,7 @@ public class vistaProyecto extends javax.swing.JFrame {
                    tf5.setText(tablaActualizar.getModel().getValueAt(selectedRow, 4).toString());
                    tf6.setText(tablaActualizar.getModel().getValueAt(selectedRow, 5).toString());
                    tf7.setText(tablaActualizar.getModel().getValueAt(selectedRow, 6).toString());                   
-               }
+               }*/
                if(facturaTButton.isSelected()){
                    tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
                    tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
@@ -139,7 +140,6 @@ public class vistaProyecto extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         clientesTButton = new javax.swing.JToggleButton();
         vehiculoTButton = new javax.swing.JToggleButton();
-        polizaTButton = new javax.swing.JToggleButton();
         facturaTButton = new javax.swing.JToggleButton();
         elem1Label = new javax.swing.JLabel();
         elem2Label = new javax.swing.JLabel();
@@ -528,13 +528,6 @@ public class vistaProyecto extends javax.swing.JFrame {
             }
         });
 
-        polizaTButton.setText("Polizas");
-        polizaTButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                polizaTButtonActionPerformed(evt);
-            }
-        });
-
         facturaTButton.setText("Facturas");
         facturaTButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,7 +564,6 @@ public class vistaProyecto extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(vehiculoTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clientesTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(polizaTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(facturaTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,21 +621,20 @@ public class vistaProyecto extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(elem3Label)
                             .addComponent(tf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(26, 26, 26)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vehiculoTButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(elem4Label)
                     .addComponent(tf4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(polizaTButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(elem5Label)
-                            .addComponent(tf5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(9, 9, 9)
+                            .addComponent(tf5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(vehiculoTButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(elem6Label)
                     .addComponent(tf6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -833,7 +824,7 @@ public class vistaProyecto extends javax.swing.JFrame {
         
         if(clientesTButton.isSelected()){                                     
             facturaTButton.setVisible(false);
-            polizaTButton.setVisible(false);
+          //  polizaTButton.setVisible(false);
             vehiculoTButton.setVisible(false);
             consulta.mostrarTablaCliente(tablaActualizar, con.getConnection());          
             elem3Label.setVisible(true);
@@ -852,7 +843,7 @@ public class vistaProyecto extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tablaActualizar.getModel();
             model.setRowCount(0);
             facturaTButton.setVisible(true);
-            polizaTButton.setVisible(true);
+          //  polizaTButton.setVisible(true);
             vehiculoTButton.setVisible(true);
             elem3Label.setVisible(false);
             elem4Label.setVisible(false);
@@ -864,21 +855,22 @@ public class vistaProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_clientesTButtonActionPerformed
 
     private void vehiculoTButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiculoTButtonActionPerformed
-        if(vehiculoTButton.isSelected()){        
-            
-            
+        if(vehiculoTButton.isSelected()){                                
             facturaTButton.setVisible(false);
-            polizaTButton.setVisible(false);
+           // polizaTButton.setVisible(false);
             clientesTButton.setVisible(false);
             consulta.mostrarTodoVehiculo(tablaActualizar, con.getConnection());
+            elem2Label.setVisible(true);
             elem3Label.setVisible(true);
             elem4Label.setVisible(true);
             elem5Label.setVisible(true);
             elem6Label.setVisible(true);
-            elem3Label.setText("id_vehiculo");
+            elem2Label.setText("id_vehiculo");
+            elem3Label.setText("id_factura_fk");
             elem4Label.setText("placa");
             elem5Label.setText("modelo");
             elem6Label.setText("marca");
+            tf2.setVisible(true);
             tf3.setVisible(true);
             tf4.setVisible(true);
             tf5.setVisible(true);
@@ -888,12 +880,14 @@ public class vistaProyecto extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tablaActualizar.getModel();
             model.setRowCount(0);
             facturaTButton.setVisible(true);
-            polizaTButton.setVisible(true);
+          //  polizaTButton.setVisible(true);
             clientesTButton.setVisible(true);
+            elem2Label.setVisible(false);
             elem4Label.setVisible(false);
             elem5Label.setVisible(false);
             elem3Label.setVisible(false);
             elem6Label.setVisible(false);
+            tf2.setVisible(false);
             tf3.setVisible(false);
             tf4.setVisible(false);
             tf5.setVisible(false);
@@ -901,65 +895,10 @@ public class vistaProyecto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_vehiculoTButtonActionPerformed
 
-    private void polizaTButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polizaTButtonActionPerformed
-        if(polizaTButton.isSelected()){                                     
-            facturaTButton.setVisible(false);
-            vehiculoTButton.setVisible(false);
-            clientesTButton.setVisible(false);
-            consulta.mostrarTodoPoliza(tablaActualizar, con.getConnection());
-            elem1Label.setVisible(true);
-            elem2Label.setVisible(true);
-            elem3Label.setVisible(true);
-            elem4Label.setVisible(true);
-            elem5Label.setVisible(true);
-            elem6Label.setVisible(true);
-            elem7Label.setVisible(true);            
-            elem1Label.setText("id_poliza");
-            elem2Label.setText("id_cliente_fk");
-            elem3Label.setText("id_vehiculo_fk");
-            elem4Label.setText("costoPoliza");
-            elem5Label.setText("valorPrima");
-            elem6Label.setText("fecha apertura");
-            elem7Label.setText("fecha venc.");
-            tf1.setVisible(true);
-            tf2.setVisible(true);
-            tf3.setVisible(true);
-            tf4.setVisible(true);
-            tf5.setVisible(true);
-            tf6.setVisible(true);
-            tf7.setVisible(true);
-            
-           
-        }else{          
-            DefaultTableModel model = (DefaultTableModel) tablaActualizar.getModel();
-            model.setRowCount(0);
-            
-            facturaTButton.setVisible(true);
-            vehiculoTButton.setVisible(true);
-            clientesTButton.setVisible(true);
-            
-            elem1Label.setVisible(false);
-            elem2Label.setVisible(false);
-            elem3Label.setVisible(false);
-            elem4Label.setVisible(false);
-            elem5Label.setVisible(false);
-            elem6Label.setVisible(false);
-            elem7Label.setVisible(false); 
-            
-            tf1.setVisible(false);
-            tf2.setVisible(false);
-            tf3.setVisible(false);
-            tf4.setVisible(false);
-            tf5.setVisible(false);
-            tf6.setVisible(false);
-            tf7.setVisible(false);
-        }
-    }//GEN-LAST:event_polizaTButtonActionPerformed
-
     private void facturaTButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturaTButtonActionPerformed
         if(facturaTButton.isSelected()){                                     
             vehiculoTButton.setVisible(false);
-            polizaTButton.setVisible(false);
+           // polizaTButton.setVisible(false);
             clientesTButton.setVisible(false);
             consulta.mostrarTablaFactura(tablaActualizar, con.getConnection());            
             elem3Label.setVisible(true);
@@ -975,7 +914,7 @@ public class vistaProyecto extends javax.swing.JFrame {
             model.setRowCount(0);
             
             vehiculoTButton.setVisible(true);
-            polizaTButton.setVisible(true);
+          //  polizaTButton.setVisible(true);
             clientesTButton.setVisible(true);
            
             elem3Label.setVisible(false);
@@ -1047,7 +986,6 @@ public class vistaProyecto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listaCampos;
     private javax.swing.JComboBox<String> listaMostrar;
     private javax.swing.JButton mostrarButton;
-    private javax.swing.JToggleButton polizaTButton;
     private javax.swing.JRadioButton radio1;
     private javax.swing.JRadioButton radio2;
     private javax.swing.JRadioButton radio3;
