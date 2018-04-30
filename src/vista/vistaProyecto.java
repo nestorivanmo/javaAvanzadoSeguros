@@ -3,6 +3,7 @@ import controlador.Conectar;
 import controlador.CargarBD;
 import controlador.Consultar;
 import controlador.BuscarPor;
+import controlador.Actualizar;
 import java.sql.Connection;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -14,6 +15,7 @@ public class vistaProyecto extends javax.swing.JFrame {
     CargarBD carga = new CargarBD();
     Consultar consulta = new Consultar();
     BuscarPor busqueda = new BuscarPor();
+    Actualizar actualizar = new Actualizar();
     int selectedRow = 0;
     
     public vistaProyecto() {
@@ -63,12 +65,14 @@ public class vistaProyecto extends javax.swing.JFrame {
            public void valueChanged(ListSelectionEvent event){
                
                selectedRow = tablaActualizar.getSelectedRow();
-               if(clientesTButton.isSelected()){  
+               if(clientesTButton.isSelected()){ 
+                   System.out.println("sR: "+ selectedRow);
                    tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
                    tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
                    tf5.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
                }
-               if(vehiculoTButton.isSelected()){                                      
+               if(vehiculoTButton.isSelected()){   
+                  System.out.println("sR: "+ selectedRow);
                    tf2.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
                    tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
                    tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 2).toString());
@@ -85,6 +89,7 @@ public class vistaProyecto extends javax.swing.JFrame {
                    tf7.setText(tablaActualizar.getModel().getValueAt(selectedRow, 6).toString());                   
                }*/
                if(facturaTButton.isSelected()){
+                   System.out.println("sR: "+ selectedRow);
                    tf3.setText(tablaActualizar.getModel().getValueAt(selectedRow, 0).toString());
                    tf4.setText(tablaActualizar.getModel().getValueAt(selectedRow, 1).toString());
                }
@@ -565,42 +570,45 @@ public class vistaProyecto extends javax.swing.JFrame {
                     .addComponent(vehiculoTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clientesTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(facturaTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(elem7Label)
-                        .addGap(18, 18, 18)
-                        .addComponent(tf7))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(elem3Label)
+                                .addComponent(elem7Label)
                                 .addGap(18, 18, 18)
-                                .addComponent(tf3))
+                                .addComponent(tf7))
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(elem2Label)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf2))
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(elem3Label)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf3))
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(elem2Label)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf2))
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(elem1Label)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(91, Short.MAX_VALUE))
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(elem1Label)
+                                .addComponent(elem4Label)
                                 .addGap(18, 18, 18)
-                                .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(91, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(elem4Label)
-                        .addGap(18, 18, 18)
-                        .addComponent(tf4))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(elem5Label)
-                        .addGap(18, 18, 18)
-                        .addComponent(tf5))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(elem6Label)
-                        .addGap(18, 18, 18)
-                        .addComponent(tf6))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(actualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tf4))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(elem5Label)
+                                .addGap(18, 18, 18)
+                                .addComponent(tf5))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(elem6Label)
+                                .addGap(18, 18, 18)
+                                .addComponent(tf6))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(actualizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -644,8 +652,8 @@ public class vistaProyecto extends javax.swing.JFrame {
                         .addComponent(elem7Label)
                         .addComponent(tf7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(facturaTButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(actualizarButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(actualizarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBackground(new java.awt.Color(175, 175, 175));
@@ -668,7 +676,7 @@ public class vistaProyecto extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tablaActualizar);
 
-        jLabel6.setText("Selecciona el renglón a modificar");
+        jLabel6.setText("Haz click en un renglón para actualizar");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -903,7 +911,7 @@ public class vistaProyecto extends javax.swing.JFrame {
             consulta.mostrarTablaFactura(tablaActualizar, con.getConnection());            
             elem3Label.setVisible(true);
             elem4Label.setVisible(true);
-            elem3Label.setText("id_factrua");
+            elem3Label.setText("id_factura");
             elem4Label.setText("monto");
             
             tf3.setVisible(true);
@@ -926,7 +934,22 @@ public class vistaProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_facturaTButtonActionPerformed
 
     private void actualizarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarButtonActionPerformed
-        
+        if(clientesTButton.isSelected()){
+            System.out.println("id:" + (selectedRow+1));
+            System.out.println("nombre " + tf4.getText());
+            System.out.println("direccion: " + tf5.getText());
+           //actualizar.actualizarCliente(tablaActualizar, con.getConnection(), (selectedRow + 1), tf4.getText(), tf5.getText());
+        }else if(vehiculoTButton.isSelected()){
+            System.out.println("id:" + (selectedRow+1));
+            System.out.println("id_fac " + tf3.getText());
+            System.out.println("placa: " + tf4.getText());
+            System.out.println("modelo: " + tf5.getText());
+            System.out.println("marca: " + tf6.getText());
+        }else if(facturaTButton.isSelected()){
+            
+        }else{
+            System.out.println("Presiona un botón para actualizar");
+        }
     }//GEN-LAST:event_actualizarButtonActionPerformed
 
     private void tablaActualizarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaActualizarKeyPressed
