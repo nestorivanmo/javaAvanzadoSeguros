@@ -67,7 +67,7 @@ public class Consultar {
     
      public void mostrarTablaPoliza(JTable tabladatos, Connection conn){
         DefaultTableModel modelo = new DefaultTableModel();
-         modelo.addColumn("id_poliza");
+        modelo.addColumn("id_poliza");
         modelo.addColumn("fecha apertura");
         modelo.addColumn("fecha vencimiento");
         

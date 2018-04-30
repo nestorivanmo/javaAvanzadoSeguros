@@ -14,6 +14,12 @@ public class vistaProyecto extends javax.swing.JFrame {
     
     public vistaProyecto() {
         initComponents();
+        
+       radio1.setVisible(false);
+       radio2.setVisible(false);      
+       radio3.setVisible(false);
+       txtBusqueda.setVisible(false);
+        
        consultarPanel.setEnabled(false);
        listaMostrar.removeAllItems();
        listaMostrar.addItem("Todos los clientes");
@@ -27,7 +33,7 @@ public class vistaProyecto extends javax.swing.JFrame {
        listaCampos.addItem("Nombre");
        listaCampos.addItem("Dirección");
        listaCampos.addItem("Placas del vehículo");
-       listaCampos.addItem("Costo póliza");
+       listaCampos.addItem("Costo poliza");
        listaCampos.addItem("Prima asegurada");
        elementoLabel.setText(listaCampos.getItemAt(listaCampos.getSelectedIndex()));
       
@@ -68,6 +74,9 @@ public class vistaProyecto extends javax.swing.JFrame {
         txtBusqueda = new javax.swing.JTextField();
         buscarButton = new javax.swing.JButton();
         elementoLabel = new javax.swing.JLabel();
+        radio1 = new javax.swing.JRadioButton();
+        radio2 = new javax.swing.JRadioButton();
+        radio3 = new javax.swing.JRadioButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -305,6 +314,17 @@ public class vistaProyecto extends javax.swing.JFrame {
 
         elementoLabel.setText("Elemento");
 
+        radio1.setText("0-50,000");
+
+        radio2.setText("50,000-100,000");
+        radio2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio2ActionPerformed(evt);
+            }
+        });
+
+        radio3.setText("100,000-300,000");
+
         javax.swing.GroupLayout txtDireccionLayout = new javax.swing.GroupLayout(txtDireccion);
         txtDireccion.setLayout(txtDireccionLayout);
         txtDireccionLayout.setHorizontalGroup(
@@ -316,16 +336,23 @@ public class vistaProyecto extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(listaCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(txtDireccionLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radio3)
+                            .addComponent(radio2)
+                            .addComponent(radio1))
+                        .addContainerGap(128, Short.MAX_VALUE))
+                    .addComponent(txtBusqueda)))
             .addGroup(txtDireccionLayout.createSequentialGroup()
                 .addGroup(txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(txtDireccionLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(txtDireccionLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(elementoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 115, Short.MAX_VALUE))
+                        .addComponent(elementoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(txtDireccionLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         txtDireccionLayout.setVerticalGroup(
             txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,11 +363,17 @@ public class vistaProyecto extends javax.swing.JFrame {
                     .addComponent(listaCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(elementoLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(3, 3, 3)
                 .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(radio1)
+                .addGap(15, 15, 15)
+                .addComponent(radio2)
+                .addGap(18, 18, 18)
+                .addComponent(radio3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         jPanel9.setBackground(new java.awt.Color(175, 175, 175));
@@ -447,7 +480,7 @@ public class vistaProyecto extends javax.swing.JFrame {
         Connection reg = con.getConnection();
         con.desconectar();
         reg = null;
-        txtEstado.setText("Desconecatdo");
+        txtEstado.setText("Desconectado");
         cargarButton.setEnabled(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -473,13 +506,43 @@ public class vistaProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrarButtonActionPerformed
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+     
+        int r = 0;
+        if(radio1.isSelected()){
+            r = 1;
+        }else if(radio2.isSelected()){
+            r = 2;
+        }else if(radio3.isSelected()){
+            r = 3;
+        }else{
+            r = 0;
+        }
         
-        busqueda.buscar(listaCampos.getSelectedIndex(), con.getConnection(), tablaBusqueda, txtBusqueda.getText());
+        busqueda.buscar(listaCampos.getSelectedIndex(), con.getConnection(), tablaBusqueda, txtBusqueda.getText(), r);
+         
+        
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void listaCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaCamposActionPerformed
+        
         elementoLabel.setText(listaCampos.getItemAt(listaCampos.getSelectedIndex()));
+         
+        if(listaCampos.getItemAt(listaCampos.getSelectedIndex()) == "Costo poliza" || listaCampos.getItemAt(listaCampos.getSelectedIndex()) == "Prima asegurada"){
+            radio1.setVisible(true);
+            radio2.setVisible(true);
+            radio3.setVisible(true);
+            txtBusqueda.setVisible(false);
+        }else{
+            txtBusqueda.setVisible(true);
+            radio1.setVisible(false);
+            radio2.setVisible(false);
+            radio3.setVisible(false);
+        }               
     }//GEN-LAST:event_listaCamposActionPerformed
+
+    private void radio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radio2ActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -519,6 +582,9 @@ public class vistaProyecto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listaCampos;
     private javax.swing.JComboBox<String> listaMostrar;
     private javax.swing.JButton mostrarButton;
+    private javax.swing.JRadioButton radio1;
+    private javax.swing.JRadioButton radio2;
+    private javax.swing.JRadioButton radio3;
     private javax.swing.JTable tablaBusqueda;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JLabel tituloLabel;
