@@ -2,6 +2,7 @@ package vista;
 import controlador.Conectar;
 import controlador.CargarBD;
 import controlador.Consultar;
+import controlador.BuscarPor;
 import java.sql.Connection;
 
 public class vistaProyecto extends javax.swing.JFrame {
@@ -9,6 +10,7 @@ public class vistaProyecto extends javax.swing.JFrame {
     Conectar con;
     CargarBD carga = new CargarBD();
     Consultar consulta = new Consultar();
+    BuscarPor busqueda = new BuscarPor();
     
     public vistaProyecto() {
         initComponents();
@@ -16,8 +18,18 @@ public class vistaProyecto extends javax.swing.JFrame {
        listaMostrar.removeAllItems();
        listaMostrar.addItem("Todos los clientes");
        listaMostrar.addItem("Todas las facturas");
+       listaMostrar.addItem("Todos los vehiculos");
        listaMostrar.addItem("Clientes con vehiculos");
        listaMostrar.addItem("Fechas poliza");
+       listaMostrar.addItem("Poliza más alta");
+       
+       listaCampos.removeAllItems();
+       listaCampos.addItem("Nombre");
+       listaCampos.addItem("Dirección");
+       listaCampos.addItem("Placas del vehículo");
+       listaCampos.addItem("Costo póliza");
+       listaCampos.addItem("Prima asegurada");
+       elementoLabel.setText(listaCampos.getItemAt(listaCampos.getSelectedIndex()));
       
     }
 
@@ -49,6 +61,17 @@ public class vistaProyecto extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
         mostrarButton = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        txtDireccion = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        listaCampos = new javax.swing.JComboBox<>();
+        txtBusqueda = new javax.swing.JTextField();
+        buscarButton = new javax.swing.JButton();
+        elementoLabel = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaBusqueda = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,7 +153,7 @@ public class vistaProyecto extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +197,7 @@ public class vistaProyecto extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(178, 178, 178));
 
-        jLabel4.setText("Datos arrojados...");
+        jLabel4.setText("Datos arrojados");
 
         tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,7 +254,7 @@ public class vistaProyecto extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(mostrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 63, Short.MAX_VALUE))
+                        .addGap(0, 66, Short.MAX_VALUE))
                     .addComponent(listaMostrar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,6 +286,120 @@ public class vistaProyecto extends javax.swing.JFrame {
         );
 
         consultarPanel.addTab("Consultar", jPanel5);
+
+        jLabel9.setText("Buscar por...");
+
+        listaCampos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaCamposActionPerformed(evt);
+            }
+        });
+
+        buscarButton.setText("Buscar");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
+
+        elementoLabel.setText("Elemento");
+
+        javax.swing.GroupLayout txtDireccionLayout = new javax.swing.GroupLayout(txtDireccion);
+        txtDireccion.setLayout(txtDireccionLayout);
+        txtDireccionLayout.setHorizontalGroup(
+            txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtDireccionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(txtDireccionLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listaCampos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtBusqueda, javax.swing.GroupLayout.Alignment.TRAILING)))
+            .addGroup(txtDireccionLayout.createSequentialGroup()
+                .addGroup(txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(txtDireccionLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(txtDireccionLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(elementoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 115, Short.MAX_VALUE))
+        );
+        txtDireccionLayout.setVerticalGroup(
+            txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtDireccionLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(txtDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(listaCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(elementoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(175, 175, 175));
+
+        jLabel5.setText("Datos arrojados");
+
+        tablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tablaBusqueda);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        consultarPanel.addTab("Buscar", jPanel7);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -335,6 +472,15 @@ public class vistaProyecto extends javax.swing.JFrame {
         consulta.consultaBD(listaMostrar.getSelectedIndex(), con.getConnection(), tablaDatos);
     }//GEN-LAST:event_mostrarButtonActionPerformed
 
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        
+        busqueda.buscar(listaCampos.getSelectedIndex(), con.getConnection(), tablaBusqueda, txtBusqueda.getText());
+    }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void listaCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaCamposActionPerformed
+        elementoLabel.setText(listaCampos.getItemAt(listaCampos.getSelectedIndex()));
+    }//GEN-LAST:event_listaCamposActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -344,29 +490,40 @@ public class vistaProyecto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarButton;
     private javax.swing.JButton cargarButton;
     private javax.swing.JTabbedPane consultarPanel;
+    private javax.swing.JLabel elementoLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JComboBox<String> listaCampos;
     private javax.swing.JComboBox<String> listaMostrar;
     private javax.swing.JButton mostrarButton;
+    private javax.swing.JTable tablaBusqueda;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JLabel tituloLabel;
+    private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JPanel txtDireccion;
     private javax.swing.JTextField txtEstado;
     // End of variables declaration//GEN-END:variables
 }

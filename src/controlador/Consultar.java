@@ -141,6 +141,78 @@ public class Consultar {
        
     }
     
+    public void mostrarTablaPolizaMasAlta(JTable tabladatos, Connection conn){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_cliente");
+        modelo.addColumn("nombre");
+        modelo.addColumn("costo poliza");
+        modelo.addColumn("placa");
+        modelo.addColumn("monto");       
+        
+        tabladatos.setModel(modelo);
+        
+        String query = "SELECT \n" +
+"	id_cliente, \n" +
+"	nombre,\n" +
+"	costoPoliza,\n" +
+"	placa, \n" +
+"	monto\n" +
+"FROM \n" +
+"	CLIENTE c1\n" +
+"		INNER JOIN \n" +
+"	POLIZA p1 ON c1.id_cliente = p1.id_cliente_fk\n" +
+"		INNER JOIN\n" +
+"	VEHICULO v1 ON p1.id_vehiculo_fk = v1.id_vehiculo\n" +
+"		INNER JOIN\n" +
+"	FACTURA f1 ON v1.id_factura_fk = f1.id_factura\n" +
+"WHERE\n" +
+"	costoPoliza >= 50000;";
+        String datos[] = new String [6];
+        Statement st;
+        try {
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);  
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4); 
+                datos[4] = rs.getString(5);                 
+                modelo.addRow(datos);
+            }
+            tabladatos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mostrarTablaVehiculos(JTable tabladatos, Connection conn){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id_vehiculo");
+        modelo.addColumn("placa");
+        modelo.addColumn("modelo");
+        modelo.addColumn("marca");       
+        
+        tabladatos.setModel(modelo);
+        
+        String query = "SELECT id_vehiculo, placa, modelo, marca FROM VEHICULO";
+        String datos[] = new String [4];
+        Statement st;
+        try {
+            st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);  
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4); 
+                modelo.addRow(datos);
+            }
+            tabladatos.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     public void consultaBD(int i, Connection conn, JTable tabladatos){
@@ -152,11 +224,18 @@ public class Consultar {
                 mostrarTablaFactura(tabladatos, conn);
                 break;
             case 2:
-                mostrarTablaClienteVehiculo1(tabladatos, conn);
+                mostrarTablaVehiculos(tabladatos, conn);
                 break;
             case 3:
+                mostrarTablaClienteVehiculo1(tabladatos, conn);
+                break;
+            case 4:
                 mostrarTablaPoliza(tabladatos, conn);
                 break;
+            case 5:
+                mostrarTablaPolizaMasAlta(tabladatos, conn);
+                break;
+                  
         }
     }
     
